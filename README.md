@@ -1,1 +1,1 @@
-# template_apache_http_v24_standalone_basic
+Copyright IBM Corp. 2017, 2017
