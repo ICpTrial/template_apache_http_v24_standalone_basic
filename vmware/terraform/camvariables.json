@@ -103,6 +103,17 @@
       "group_name": "virtualmachine"
     },
     {
+      "name": "HTTPNode01_domain",
+      "type": "string",
+      "description": "Domain Name of virtual machine",
+      "hidden": false,
+      "label": "Domain Name - HTTPNode01",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "virtualmachine"
+    },
+    {
       "name": "HTTPNode01_httpd_php_mod_enabled",
       "type": "string",
       "description": "Enable PHP in Apache on Linux by Loading the Module",

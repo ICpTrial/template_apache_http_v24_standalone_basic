@@ -1,9 +1,9 @@
-# Template - Apache HTTP Server basic deployment on a single VM
+# Template - Apache HTTP Server basic deployment on a single virtual machine
 Template Version - 1.0
 
 ## Description
 
-This template deploys Apache HTTP Server with a basic configuration on a single Linux node. The installation includes a variable port and content directory. SSL is not configured.<br>
+This template deploys Apache HTTP Server with a basic configuration on a Linux virtual machine.<br>
 
 ## Features
 
@@ -18,9 +18,7 @@ This template deploys Apache HTTP Server with a basic configuration on a single 
 ### Operating Systems Supported
 
 Red Hat Enterprise Linux 7<br>
-Red Hat Enterprise Linux 6<br>
 Ubuntu 16.04 LTS<br>
-Ubuntu 14.04 LTS<br>
 <br>
 ### Topology
 
@@ -29,7 +27,7 @@ Ubuntu 14.04 LTS<br>
 <br>
 ### Software Deployed
 
-Apache HTTP Server 2.4<br>
+Apache HTTP Server V2.4<br>
 <br>
 ### Default Virtual Machine Settings
 

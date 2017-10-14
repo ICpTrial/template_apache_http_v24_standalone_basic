@@ -1,6 +1,6 @@
 {
-    "name": "Apache HTTP Server basic deployment on a single VM - VMware vSphere",
-    "description": "This template deploys Apache HTTP Server with a basic configuration on a single Linux node. The installation includes a variable port and content directory. SSL is not configured.",
+    "name": "Apache HTTP Server basic deployment on a single virtual machine - VMware vSphere",
+    "description": "This template deploys Apache HTTP Server with a basic configuration on a Linux virtual machine.",
     "version": "1.0",
     "imageUrl": "",
     "image": "",
@@ -23,9 +23,9 @@
       }
     },
     "metadata": {
-      "displayName": "Apache HTTP Server basic deployment on a single VM",
+      "displayName": "Apache HTTP Server basic deployment on a single virtual machine",
       "providerDisplayName": "VMware vSphere",
-      "longDescription": "This template deploys Apache HTTP Server with a basic configuration on a single Linux node. The installation includes a variable port and content directory. SSL is not configured.",
+      "longDescription": "This template deploys Apache HTTP Server with a basic configuration on a Linux virtual machine.",
       "bullets": [{
     "title": "Clouds",
     "description": " VMware<br>"},
@@ -34,13 +34,13 @@
     "description": "1.0<br>"},
 {
     "title": "Operating Systems Supported",
-    "description": "Red Hat Enterprise Linux 7<br>Red Hat Enterprise Linux 6<br>Ubuntu 16.04 LTS<br>Ubuntu 14.04 LTS<br>"},
+    "description": "Red Hat Enterprise Linux 7<br>Ubuntu 16.04 LTS<br>"},
 {
     "title": "Topology",
     "description": "1 virtual machine:<br>  httpd service instance<br>"},
 {
     "title": "Software Deployed",
-    "description": "Apache HTTP Server 2.4<br>"},
+    "description": "Apache HTTP Server V2.4<br>"},
 {
     "title": "Default Virtual Machine Settings",
     "description": " vCPU 2, Memory (GB) 2<br>"},

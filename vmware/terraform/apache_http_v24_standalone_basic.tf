@@ -211,6 +211,11 @@ variable "HTTPNode01_httpd_vhosts_enabled" {
 ##### Resource : HTTPNode01
 #########################################################
 
+variable "HTTPNode01_domain" {
+  type = "string"
+  description = "Domain Name of virtual machine"
+}
+
 variable "HTTPNode01-os_password" {
   type        = "string"
   description = "Operating System Password for the Operating System User to access virtual machine"
@@ -296,6 +301,7 @@ resource "vsphere_virtual_machine" "HTTPNode01" {
   cluster      = "${var.HTTPNode01_cluster}"
   dns_suffixes = "${var.HTTPNode01_dns_suffixes}"
   dns_servers  = "${var.HTTPNode01_dns_servers}"
+  domain       = "${var.HTTPNode01_domain}"
 
   network_interface {
     label              = "${var.HTTPNode01_network_interface_label}"
