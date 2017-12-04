@@ -369,7 +369,7 @@ if ! [ -f $user_auth_key_file ]; then
 echo "$user_auth_key_file does not exist on this system, creating."
 mkdir $user_home/.ssh
 chmod 700 $user_home/.ssh
-touch $user_home/.ssh/authorized_keys
+echo "" > $user_home/.ssh/authorized_keys
 chmod 600 $user_home/.ssh/authorized_keys
 else
 echo "user_home : $user_home"
@@ -402,8 +402,8 @@ EOF
   # Execute the script remotely
   provisioner "remote-exec" {
     inline = [
-      "bash -c 'chmod +x HTTPNode01_add_ssh_key.sh'",
-      "bash -c './HTTPNode01_add_ssh_key.sh  \"${var.HTTPNode01-os_admin_user}\" \"${var.user_public_ssh_key}\" \"${var.ibm_pm_public_ssh_key}\">> HTTPNode01_add_ssh_key.log 2>&1'",
+      "sudo bash -c 'chmod +x HTTPNode01_add_ssh_key.sh'",
+      "sudo bash -c './HTTPNode01_add_ssh_key.sh  \"${var.HTTPNode01-os_admin_user}\" \"${var.user_public_ssh_key}\" \"${var.ibm_pm_public_ssh_key}\">> HTTPNode01_add_ssh_key.log 2>&1'",
     ]
   }
 }
