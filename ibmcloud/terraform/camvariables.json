@@ -12,10 +12,6 @@
       "label": "Cloud Input Variables"
     },
     {
-      "name": "virtualmachine",
-      "label": "Virtual Machine Input Variables"
-    },
-    {
       "name": "ssh_keys",
       "label": "SSH Keys"
     },
@@ -26,6 +22,10 @@
     {
       "name": "httpnode01",
       "label": "HTTPNode01"
+    },
+    {
+      "name": "virtualmachine",
+      "label": "Virtual Machine Input Variables"
     },
     {
       "name": "ungrouped",
@@ -291,30 +291,6 @@
       "group_name": "environment"
     },
     {
-      "name": "HTTPNode01_local_disk",
-      "type": "string",
-      "description": "User local disk or SAN disk",
-      "default": "false",
-      "hidden": false,
-      "label": "IBMCloud - Local / SAN Disk - HTTPNode01",
-      "secured": false,
-      "options": [
-        {
-          "value": "true",
-          "label": "True"
-        },
-        {
-          "value": "false",
-          "label": "False",
-          "default": "true"
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpnode01"
-    },
-    {
       "name": "HTTPNode01_datacenter",
       "type": "string",
       "description": "IBMCloud datacenter where infrastructure resources will be deployed",
@@ -452,7 +428,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_dedicated_acct_host_only",
@@ -476,7 +452,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_hourly_billing",
@@ -500,7 +476,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_network_speed",
@@ -524,7 +500,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_private_network_only",
@@ -548,7 +524,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_memory",
@@ -592,7 +568,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_number_of_cores",
@@ -636,7 +612,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01-image",
@@ -683,7 +659,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01-name",
@@ -694,6 +670,7 @@
       "secured": false,
       "required": true,
       "immutable": false,
+      "immutable_after_create": true,
       "group_name": "virtualmachine"
     },
     {
@@ -715,7 +692,7 @@
       "description": "Expose and use public IP of virtual machine for internal communication",
       "default": "true",
       "hidden": false,
-      "label": "Use Public Management Network - HTTPNode01",
+      "label": "Use Public Management Network",
       "secured": false,
       "options": [
         {
@@ -730,7 +707,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "virtualmachine"
     },
     {
       "name": "HTTPNode01_httpd_os_users_web_content_owner_name",
@@ -744,6 +721,29 @@
       "immutable": false,
       "immutable_after_create": true,
       "group_name": "httpnode01"
+    },
+    {
+      "name": "HTTPNode01_local_disk",
+      "type": "string",
+      "description": "User local disk or SAN disk",
+      "default": "false",
+      "hidden": false,
+      "label": "IBMCloud - Local / SAN Disk - HTTPNode01",
+      "secured": false,
+      "options": [
+        {
+          "value": "true",
+          "label": "True"
+        },
+        {
+          "value": "false",
+          "label": "False",
+          "default": "true"
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "cloud"
     },
     {
       "name": "ibm_pm_private_ssh_key",
@@ -779,6 +779,7 @@
       "secured": false,
       "required": true,
       "immutable": false,
+      "immutable_after_create": true,
       "group_name": "ssh_keys"
     },
     {

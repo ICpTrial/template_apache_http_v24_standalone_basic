@@ -9,7 +9,7 @@
 # This is a terraform generated template generated from apache_http_v24_standalone_basic
 
 ##############################################################
-# Keys - CAMC (public/private) & optional User Key (public)
+# Keys - CAMC (public/private) & optional User Key (public) 
 ##############################################################
 variable "ibm_pm_public_ssh_key_name" {
   description = "Public CAMC SSH key name used to connect to the virtual guest."
@@ -20,25 +20,26 @@ variable "ibm_pm_private_ssh_key" {
 }
 
 variable "user_public_ssh_key" {
-  type        = "string"
+  type = "string"
   description = "User defined public SSH key used to connect to the virtual machine. The format must be in openSSH."
-  default     = "None"
+  default = "None"
 }
 
 variable "aws_ami_owner_id" {
-  description = "The AMI Owner ID"
-  default     = "309956199498"
+  description = "AWS AMI Owner ID"
+  default = "309956199498"
 }
 
 variable "aws_region" {
-  description = "The aws region"
+  description = "AWS Region Name"
+  default = "us-east-1"
 }
 
 ##############################################################
-# Define the aws provider
+# Define the aws provider 
 ##############################################################
 provider "aws" {
-  region  = "${var.aws_region}"
+  region = "${var.aws_region}"
   version = "~> 1.2"
 }
 
@@ -52,24 +53,24 @@ provider "random" {
 
 data "aws_vpc" "selected_vpc" {
   filter {
-    name   = "tag:Name"
+    name = "tag:Name"
     values = ["${var.aws_vpc_name}"]
   }
 }
 
 #Parameter : aws_vpc_name
 variable "aws_vpc_name" {
-  description = "The name of the aws vpc"
+  description = "AWS VPC Name"
 }
 
 data "aws_security_group" "aws_sg_camc_name_selected" {
-  name   = "${var.aws_sg_camc_name}"
+  name = "${var.aws_sg_camc_name}"
   vpc_id = "${data.aws_vpc.selected_vpc.id}"
 }
 
 #Parameter : aws_sg_camc_name
 variable "aws_sg_camc_name" {
-  description = "The name of the aws security group for automation content"
+  description = "AWS Security Group Name"
 }
 
 resource "random_id" "stack_id" {
@@ -77,279 +78,272 @@ resource "random_id" "stack_id" {
 }
 
 ##############################################################
-# Define pattern variables
+# Define pattern variables 
 ##############################################################
 ##### unique stack name #####
 variable "ibm_stack_name" {
   description = "A unique stack name."
 }
 
-#### Default OS Admin User Map ####
-variable "default_os_admin_user" {
-  type        = "map"
-  description = "look up os_admin_user using resource image"
-
-  default = {
-    ubuntu_images_ubuntu_xenial-16.04_099720109477 = "ubuntu"
-    RHEL-7.4_HVM_GA_309956199498                   = "ec2-user"
-  }
-}
 
 ##### Environment variables #####
 #Variable : ibm_pm_access_token
 variable "ibm_pm_access_token" {
-  type        = "string"
+  type = "string"
   description = "IBM Pattern Manager Access Token"
 }
 
 #Variable : ibm_pm_service
 variable "ibm_pm_service" {
-  type        = "string"
+  type = "string"
   description = "IBM Pattern Manager Service"
 }
 
 #Variable : ibm_sw_repo
 variable "ibm_sw_repo" {
-  type        = "string"
+  type = "string"
   description = "IBM Software Repo Root (https://<hostname>:<port>)"
 }
 
 #Variable : ibm_sw_repo_password
 variable "ibm_sw_repo_password" {
-  type        = "string"
+  type = "string"
   description = "IBM Software Repo Password"
 }
 
 #Variable : ibm_sw_repo_user
 variable "ibm_sw_repo_user" {
-  type        = "string"
+  type = "string"
   description = "IBM Software Repo Username"
-  default     = "repouser"
+  default = "repouser"
 }
+
 
 ##### HTTPNode01 variables #####
 #Variable : HTTPNode01-flavor
 variable "HTTPNode01-flavor" {
-  type        = "string"
+  type = "string"
   description = "HTTPNode01 Flavor"
-  default     = "t2.small"
+  default = "t2.small"
 }
 
 data "aws_ami" "HTTPNode01_ami" {
   most_recent = true
-
   filter {
-    name   = "name"
+    name = "name"
     values = ["${var.HTTPNode01-image}*"]
   }
-
   owners = ["${var.aws_ami_owner_id}"]
 }
 
 #Variable : HTTPNode01-image
 variable "HTTPNode01-image" {
-  type        = "string"
+  type = "string"
   description = "Operating system image id / template that should be used when creating the virtual image"
-  default     = "RHEL-7.4_HVM_GA"
+  default = "RHEL-7.4_HVM_GA"
 }
 
 #Variable : HTTPNode01-mgmt-network-public
 variable "HTTPNode01-mgmt-network-public" {
-  type        = "string"
+  type = "string"
   description = "Expose and use public IP of virtual machine for internal communication"
-  default     = "true"
+  default = "true"
 }
 
 #Variable : HTTPNode01-name
 variable "HTTPNode01-name" {
-  type        = "string"
+  type = "string"
   description = "Short hostname of virtual machine"
 }
 
 #Variable : HTTPNode01-os_admin_user
 variable "HTTPNode01-os_admin_user" {
-  type        = "string"
+  type = "string"
   description = "Name of the admin user account in the virtual machine that will be accessed via SSH"
 }
 
 #Variable : HTTPNode01_httpd_data_dir_mode
 variable "HTTPNode01_httpd_data_dir_mode" {
-  type        = "string"
+  type = "string"
   description = "OS Permisssions of data folders"
-  default     = "0755"
+  default = "0755"
 }
 
 #Variable : HTTPNode01_httpd_document_root
 variable "HTTPNode01_httpd_document_root" {
-  type        = "string"
+  type = "string"
   description = "File System Location of the Document Root"
-  default     = "/var/www/html5"
+  default = "/var/www/html5"
 }
 
 #Variable : HTTPNode01_httpd_listen
 variable "HTTPNode01_httpd_listen" {
-  type        = "string"
+  type = "string"
   description = "Listening port to be configured in HTTP server"
-  default     = "8080"
+  default = "8080"
 }
 
 #Variable : HTTPNode01_httpd_log_dir
 variable "HTTPNode01_httpd_log_dir" {
-  type        = "string"
+  type = "string"
   description = "Directory where HTTP Server logs will be sent"
-  default     = "/var/log/httpd"
+  default = "/var/log/httpd"
 }
 
 #Variable : HTTPNode01_httpd_log_level
 variable "HTTPNode01_httpd_log_level" {
-  type        = "string"
+  type = "string"
   description = "Log levels of the http process"
-  default     = "info"
+  default = "info"
 }
 
 #Variable : HTTPNode01_httpd_os_users_web_content_owner_gid
 variable "HTTPNode01_httpd_os_users_web_content_owner_gid" {
-  type        = "string"
+  type = "string"
   description = "Group ID of web content owner to be configured in HTTP server"
-  default     = "webmaster"
+  default = "webmaster"
 }
 
 #Variable : HTTPNode01_httpd_os_users_web_content_owner_home
 variable "HTTPNode01_httpd_os_users_web_content_owner_home" {
-  type        = "string"
+  type = "string"
   description = "Home directory of web content owner to be configured in HTTP server"
-  default     = "/home/webmaster"
+  default = "/home/webmaster"
 }
 
 #Variable : HTTPNode01_httpd_os_users_web_content_owner_ldap_user
 variable "HTTPNode01_httpd_os_users_web_content_owner_ldap_user" {
-  type        = "string"
+  type = "string"
   description = "Use LDAP to authenticate Web Content Owner account on Linux HTTP server as well as web site logins"
-  default     = "false"
+  default = "false"
 }
 
 #Variable : HTTPNode01_httpd_os_users_web_content_owner_name
 variable "HTTPNode01_httpd_os_users_web_content_owner_name" {
-  type        = "string"
+  type = "string"
   description = "User ID of web content owner to be configured in HTTP server"
-  default     = "webmaster"
+  default = "webmaster"
 }
 
 #Variable : HTTPNode01_httpd_os_users_web_content_owner_shell
 variable "HTTPNode01_httpd_os_users_web_content_owner_shell" {
-  type        = "string"
+  type = "string"
   description = "Default shell configured on Linux server"
-  default     = "/bin/bash"
+  default = "/bin/bash"
 }
 
 #Variable : HTTPNode01_httpd_php_mod_enabled
 variable "HTTPNode01_httpd_php_mod_enabled" {
-  type        = "string"
+  type = "string"
   description = "Enable PHP in Apache on Linux by Loading the Module"
-  default     = "true"
+  default = "true"
 }
 
 #Variable : HTTPNode01_httpd_server_admin
 variable "HTTPNode01_httpd_server_admin" {
-  type        = "string"
+  type = "string"
   description = "Email Address of the Webmaster"
-  default     = "webmaster@orpheus.ibm.com"
+  default = "webmaster@orpheus.ibm.com"
 }
 
 #Variable : HTTPNode01_httpd_server_name
 variable "HTTPNode01_httpd_server_name" {
-  type        = "string"
+  type = "string"
   description = "The Name of the HTTP Server, normally the FQDN of server."
-  default     = "orpheus.ibm.com"
+  default = "orpheus.ibm.com"
 }
 
 #Variable : HTTPNode01_httpd_version
 variable "HTTPNode01_httpd_version" {
-  type        = "string"
+  type = "string"
   description = "Version of HTTP Server to be installed."
-  default     = "2.4"
+  default = "2.4"
 }
 
 #Variable : HTTPNode01_httpd_vhosts_enabled
 variable "HTTPNode01_httpd_vhosts_enabled" {
-  type        = "string"
+  type = "string"
   description = "Allow to configure virtual hosts to run multiple websites on the same HTTP server"
-  default     = "false"
+  default = "false"
 }
 
 ##### domain name #####
 variable "runtime_domain" {
   description = "domain name"
-  default     = "cam.ibm.com"
+  default = "cam.ibm.com"
 }
+
 
 #########################################################
 ##### Resource : HTTPNode01
 #########################################################
 
+
 #Parameter : HTTPNode01_subnet_name
 data "aws_subnet" "HTTPNode01_selected_subnet" {
   filter {
-    name   = "tag:Name"
+    name = "tag:Name"
     values = ["${var.HTTPNode01_subnet_name}"]
   }
 }
 
 variable "HTTPNode01_subnet_name" {
-  type        = "string"
+  type = "string"
   description = "AWS Subnet Name"
 }
 
+
 #Parameter : HTTPNode01_associate_public_ip_address
 variable "HTTPNode01_associate_public_ip_address" {
-  type        = "string"
-  description = "Assign a public IP"
-  default     = "true"
+  type = "string"
+  description = "AWS assign a public IP to instance"
+  default = "true"
 }
+
 
 #Parameter : HTTPNode01_root_block_device_volume_type
 variable "HTTPNode01_root_block_device_volume_type" {
-  type        = "string"
+  type = "string"
   description = "AWS Root Block Device Volume Type"
-  default     = "gp2"
+  default = "gp2"
 }
+
 
 #Parameter : HTTPNode01_root_block_device_volume_size
 variable "HTTPNode01_root_block_device_volume_size" {
-  type        = "string"
+  type = "string"
   description = "AWS Root Block Device Volume Size"
-  default     = "25"
+  default = "25"
 }
+
 
 #Parameter : HTTPNode01_root_block_device_delete_on_termination
 variable "HTTPNode01_root_block_device_delete_on_termination" {
-  type        = "string"
+  type = "string"
   description = "AWS Root Block Device Delete on Termination"
-  default     = "true"
+  default = "true"
 }
 
 resource "aws_instance" "HTTPNode01" {
-  ami                         = "${data.aws_ami.HTTPNode01_ami.id}"
-  instance_type               = "${var.HTTPNode01-flavor}"
-  key_name                    = "${var.ibm_pm_public_ssh_key_name}"
-  vpc_security_group_ids      = ["${data.aws_security_group.aws_sg_camc_name_selected.id}"]
-  subnet_id                   = "${data.aws_subnet.HTTPNode01_selected_subnet.id}"
+  ami = "${data.aws_ami.HTTPNode01_ami.id}"
+  instance_type = "${var.HTTPNode01-flavor}"
+  key_name = "${var.ibm_pm_public_ssh_key_name}"
+  vpc_security_group_ids = ["${data.aws_security_group.aws_sg_camc_name_selected.id}"]
+  subnet_id = "${data.aws_subnet.HTTPNode01_selected_subnet.id}"
   associate_public_ip_address = "${var.HTTPNode01_associate_public_ip_address}"
-
   tags {
     Name = "${var.HTTPNode01-name}"
   }
 
   # Specify the ssh connection
   connection {
-    user        = "${var.HTTPNode01-os_admin_user == "" ? lookup(var.default_os_admin_user, format("%s_%s", replace(var.HTTPNode01-image, "/", "_"), var.aws_ami_owner_id)) : var.HTTPNode01-os_admin_user}"
+    user = "${var.HTTPNode01-os_admin_user}"
     private_key = "${base64decode(var.ibm_pm_private_ssh_key)}"
   }
 
   provisioner "file" {
     destination = "HTTPNode01_add_ssh_key.sh"
-
-    content = <<EOF
+    content     = <<EOF
 # =================================================================
 # Licensed Materials - Property of IBM
 # 5737-E67
@@ -357,7 +351,6 @@ resource "aws_instance" "HTTPNode01" {
 # US Government Users Restricted Rights - Use, duplication or disclosure
 # restricted by GSA ADP Schedule Contract with IBM Corp.
 # =================================================================
-
 #!/bin/bash
 
 if (( $# != 2 )); then
@@ -397,25 +390,22 @@ EOF
   provisioner "remote-exec" {
     inline = [
       "bash -c 'chmod +x HTTPNode01_add_ssh_key.sh'",
-      "bash -c './HTTPNode01_add_ssh_key.sh  \"${var.HTTPNode01-os_admin_user}\" \"${var.user_public_ssh_key}\">> HTTPNode01_add_ssh_key.log 2>&1'",
+      "bash -c './HTTPNode01_add_ssh_key.sh  \"${var.HTTPNode01-os_admin_user}\" \"${var.user_public_ssh_key}\">> HTTPNode01_add_ssh_key.log 2>&1'"
     ]
   }
 
   root_block_device {
     volume_type = "${var.HTTPNode01_root_block_device_volume_type}"
     volume_size = "${var.HTTPNode01_root_block_device_volume_size}"
-
     #iops = "${var.HTTPNode01_root_block_device_iops}"
     delete_on_termination = "${var.HTTPNode01_root_block_device_delete_on_termination}"
   }
 
   user_data = "${data.template_cloudinit_config.HTTPNode01_init.rendered}"
 }
-
-data "template_cloudinit_config" "HTTPNode01_init" {
+data "template_cloudinit_config" "HTTPNode01_init"  {
   part {
     content_type = "text/cloud-config"
-
     content = <<EOF
 hostname: ${var.HTTPNode01-name}
 fqdn: ${var.HTTPNode01-name}.${var.runtime_domain}
@@ -429,16 +419,15 @@ EOF
 #########################################################
 
 resource "camc_bootstrap" "HTTPNode01_chef_bootstrap_comp" {
-  depends_on      = ["camc_vaultitem.VaultItem", "aws_instance.HTTPNode01"]
-  name            = "HTTPNode01_chef_bootstrap_comp"
-  camc_endpoint   = "${var.ibm_pm_service}/v1/bootstrap/chef"
-  access_token    = "${var.ibm_pm_access_token}"
+  depends_on = ["camc_vaultitem.VaultItem","aws_instance.HTTPNode01"]
+  name = "HTTPNode01_chef_bootstrap_comp"
+  camc_endpoint = "${var.ibm_pm_service}/v1/bootstrap/chef"
+  access_token = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
-  trace           = true
-
+  trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.HTTPNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, format("%s_%s", replace(var.HTTPNode01-image, "/", "_"), var.aws_ami_owner_id)) : var.HTTPNode01-os_admin_user}",
+  "os_admin_user": "${var.HTTPNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
   "host_ip": "${var.HTTPNode01-mgmt-network-public == "false" ? aws_instance.HTTPNode01.private_ip : aws_instance.HTTPNode01.public_ip}",
@@ -457,21 +446,21 @@ resource "camc_bootstrap" "HTTPNode01_chef_bootstrap_comp" {
 EOT
 }
 
+
 #########################################################
 ##### Resource : HTTPNode01_httpd24-base-install
 #########################################################
 
 resource "camc_softwaredeploy" "HTTPNode01_httpd24-base-install" {
-  depends_on      = ["camc_bootstrap.HTTPNode01_chef_bootstrap_comp"]
-  name            = "HTTPNode01_httpd24-base-install"
-  camc_endpoint   = "${var.ibm_pm_service}/v1/software_deployment/chef"
-  access_token    = "${var.ibm_pm_access_token}"
+  depends_on = ["camc_bootstrap.HTTPNode01_chef_bootstrap_comp"]
+  name = "HTTPNode01_httpd24-base-install"
+  camc_endpoint = "${var.ibm_pm_service}/v1/software_deployment/chef"
+  access_token = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
-  trace           = true
-
+  trace = true
   data = <<EOT
 {
-  "os_admin_user": "${var.HTTPNode01-os_admin_user == "default"? lookup(var.default_os_admin_user, format("%s_%s", replace(var.HTTPNode01-image, "/", "_"), var.aws_ami_owner_id)) : var.HTTPNode01-os_admin_user}",
+  "os_admin_user": "${var.HTTPNode01-os_admin_user}",
   "stack_id": "${random_id.stack_id.hex}",
   "environment_name": "_default",
   "host_ip": "${var.HTTPNode01-mgmt-network-public == "false" ? aws_instance.HTTPNode01.private_ip : aws_instance.HTTPNode01.public_ip}",
@@ -520,16 +509,16 @@ resource "camc_softwaredeploy" "HTTPNode01_httpd24-base-install" {
 EOT
 }
 
+
 #########################################################
 ##### Resource : VaultItem
 #########################################################
 
 resource "camc_vaultitem" "VaultItem" {
-  camc_endpoint   = "${var.ibm_pm_service}/v1/vault_item/chef"
-  access_token    = "${var.ibm_pm_access_token}"
+  camc_endpoint = "${var.ibm_pm_service}/v1/vault_item/chef"
+  access_token = "${var.ibm_pm_access_token}"
   skip_ssl_verify = true
-  trace           = true
-
+  trace = true
   data = <<EOT
 {
   "vault_content": {
@@ -556,3 +545,4 @@ output "HTTPNode01_roles" {
 output "stack_id" {
   value = "${random_id.stack_id.hex}"
 }
+

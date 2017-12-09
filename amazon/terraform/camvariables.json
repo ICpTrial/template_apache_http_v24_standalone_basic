@@ -12,10 +12,6 @@
       "label": "Cloud Input Variables"
     },
     {
-      "name": "virtualmachine",
-      "label": "Virtual Machine Input Variables"
-    },
-    {
       "name": "ssh_keys",
       "label": "SSH Keys"
     },
@@ -26,6 +22,10 @@
     {
       "name": "httpnode01",
       "label": "HTTPNode01"
+    },
+    {
+      "name": "virtualmachine",
+      "label": "Virtual Machine Input Variables"
     }
   ],
   "output_groups": [
@@ -47,12 +47,95 @@
       "group_name": "environment"
     },
     {
+      "name": "aws_ami_owner_id",
+      "type": "string",
+      "description": "AWS AMI Owner ID",
+      "default": "309956199498",
+      "hidden": false,
+      "label": "AWS AMI Owner ID",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "cloud"
+    },
+    {
+      "name": "aws_region",
+      "type": "string",
+      "description": "AWS Region Name",
+      "default": "us-east-1",
+      "hidden": false,
+      "label": "AWS Region Name",
+      "secured": false,
+      "options": [
+        {
+          "value": "us-east-1",
+          "label": "US East (N. Virginia)",
+          "default": true
+        },
+        {
+          "value": "us-east-2",
+          "label": "US East (Ohio)"
+        },
+        {
+          "value": "us-west-1",
+          "label": "US West (N. California)"
+        },
+        {
+          "value": "us-west-2",
+          "label": "US West (Oregon)"
+        },
+        {
+          "value": "ca-central-1",
+          "label": "Canada (Central)"
+        },
+        {
+          "value": "eu-west-1",
+          "label": "EU (Ireland)"
+        },
+        {
+          "value": "eu-central-1",
+          "label": "EU (Frankfurt)"
+        },
+        {
+          "value": "eu-west-2",
+          "label": "EU (London)"
+        },
+        {
+          "value": "ap-northeast-1",
+          "label": "Asia Pacific (Tokyo)"
+        },
+        {
+          "value": "ap-northeast-2",
+          "label": "Asia Pacific (Seoul)"
+        },
+        {
+          "value": "ap-southeast-1",
+          "label": "Asia Pacific (Singapore)"
+        },
+        {
+          "value": "ap-southeast-2",
+          "label": "Asia Pacific (Sydney)"
+        },
+        {
+          "value": "ap-south-1",
+          "label": "Asia Pacific (Mumbai)"
+        },
+        {
+          "value": "sa-east-1",
+          "label": "South America (São Paulo)"
+        }
+      ],
+      "required": true,
+      "immutable": false,
+      "group_name": "cloud"
+    },
+    {
       "name": "HTTPNode01_root_block_device_delete_on_termination",
       "type": "string",
       "description": "AWS Root Block Device Delete on Termination",
       "default": "true",
       "hidden": false,
-      "label": "AWS Root Block Device Delete on Termination - HTTPNode01",
+      "label": "AWS Root Block Device Delete on Termination",
       "secured": false,
       "options": [
         {
@@ -67,8 +150,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_root_block_device_volume_size",
@@ -76,12 +158,11 @@
       "description": "AWS Root Block Device Volume Size",
       "default": 25,
       "hidden": false,
-      "label": "AWS Root Block Device Volume Size - HTTPNode01",
+      "label": "AWS Root Block Device Volume Size",
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_root_block_device_volume_type",
@@ -89,7 +170,7 @@
       "description": "AWS Root Block Device Volume Type",
       "default": "gp2",
       "hidden": false,
-      "label": "AWS Root Block Device Volume Type - HTTPNode01",
+      "label": "AWS Root Block Device Volume Type",
       "secured": false,
       "options": [
         {
@@ -112,28 +193,48 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
+    },
+    {
+      "name": "aws_sg_camc_name",
+      "type": "string",
+      "description": "AWS Security Group Name",
+      "hidden": false,
+      "label": "AWS Security Group Name",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_subnet_name",
       "type": "string",
       "description": "AWS Subnet Name",
       "hidden": false,
-      "label": "AWS Subnet Name - HTTPNode01",
+      "label": "AWS Subnet Name",
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
+    },
+    {
+      "name": "aws_vpc_name",
+      "type": "string",
+      "description": "AWS VPC Name",
+      "hidden": false,
+      "label": "AWS VPC Name",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_associate_public_ip_address",
       "type": "string",
-      "description": "Assign a public IP",
+      "description": "AWS assign a public IP to instance",
       "default": "true",
       "hidden": false,
-      "label": "Assign a public IP - HTTPNode01",
+      "label": "AWS assign a public IP to instance",
       "secured": false,
       "options": [
         {
@@ -148,8 +249,7 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_httpd_php_mod_enabled",
@@ -316,7 +416,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "virtualmachine"
     },
     {
       "name": "HTTPNode01_httpd_server_name",
@@ -439,110 +539,6 @@
       "group_name": "virtualmachine"
     },
     {
-      "name": "aws_ami_owner_id",
-      "type": "string",
-      "description": "The AMI Owner ID",
-      "default": "309956199498",
-      "hidden": false,
-      "label": "The AMI Owner ID",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "cloud"
-    },
-    {
-      "name": "aws_region",
-      "type": "string",
-      "description": "The aws region",
-      "hidden": false,
-      "label": "The aws region",
-      "secured": false,
-      "options": [
-        {
-          "value": "us-east-1",
-          "label": "US East (N. Virginia)",
-          "default": true
-        },
-        {
-          "value": "us-east-2",
-          "label": "US East (Ohio)"
-        },
-        {
-          "value": "us-west-1",
-          "label": "US West (N. California)"
-        },
-        {
-          "value": "us-west-2",
-          "label": "US West (Oregon)"
-        },
-        {
-          "value": "ca-central-1",
-          "label": "Canada (Central)"
-        },
-        {
-          "value": "eu-west-1",
-          "label": "EU (Ireland)"
-        },
-        {
-          "value": "eu-central-1",
-          "label": "EU (Frankfurt)"
-        },
-        {
-          "value": "eu-west-2",
-          "label": "EU (London)"
-        },
-        {
-          "value": "ap-northeast-1",
-          "label": "Asia Pacific (Tokyo)"
-        },
-        {
-          "value": "ap-northeast-2",
-          "label": "Asia Pacific (Seoul)"
-        },
-        {
-          "value": "ap-southeast-1",
-          "label": "Asia Pacific (Singapore)"
-        },
-        {
-          "value": "ap-southeast-2",
-          "label": "Asia Pacific (Sydney)"
-        },
-        {
-          "value": "ap-south-1",
-          "label": "Asia Pacific (Mumbai)"
-        },
-        {
-          "value": "sa-east-1",
-          "label": "South America (São Paulo)"
-        }
-      ],
-      "required": true,
-      "immutable": false,
-      "group_name": "cloud"
-    },
-    {
-      "name": "aws_sg_camc_name",
-      "type": "string",
-      "description": "The name of the aws security group for automation content",
-      "hidden": false,
-      "label": "The name of the aws security group for automation content",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "cloud"
-    },
-    {
-      "name": "aws_vpc_name",
-      "type": "string",
-      "description": "The name of the aws vpc",
-      "hidden": false,
-      "label": "The name of the aws vpc",
-      "secured": false,
-      "required": true,
-      "immutable": false,
-      "group_name": "cloud"
-    },
-    {
       "name": "HTTPNode01_httpd_os_users_web_content_owner_ldap_user",
       "type": "string",
       "description": "Use LDAP to authenticate Web Content Owner account on Linux HTTP server as well as web site logins",
@@ -561,7 +557,7 @@
       "description": "Expose and use public IP of virtual machine for internal communication",
       "default": "true",
       "hidden": false,
-      "label": "Use Public Management Network - HTTPNode01",
+      "label": "Use Public Management Network",
       "secured": false,
       "options": [
         {
@@ -576,7 +572,7 @@
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
-      "group_name": "httpnode01"
+      "group_name": "virtualmachine"
     },
     {
       "name": "HTTPNode01_httpd_os_users_web_content_owner_name",
@@ -625,6 +621,7 @@
       "secured": false,
       "required": true,
       "immutable": false,
+      "immutable_after_create": true,
       "group_name": "ssh_keys"
     },
     {
