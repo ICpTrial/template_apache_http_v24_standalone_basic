@@ -12,10 +12,6 @@
       "label": "Cloud Input Variables"
     },
     {
-      "name": "virtualmachine",
-      "label": "Virtual Machine Input Variables"
-    },
-    {
       "name": "ssh_keys",
       "label": "SSH Keys"
     },
@@ -26,6 +22,10 @@
     {
       "name": "httpnode01",
       "label": "HTTPNode01"
+    },
+    {
+      "name": "virtualmachine",
+      "label": "Virtual Machine Input Variables"
     }
   ],
   "output_groups": [
@@ -146,6 +146,17 @@
       "hidden": false,
       "label": "Enable Virtual Host Configuration - HTTPNode01",
       "secured": false,
+      "options": [
+        {
+          "value": "true",
+          "label": "true"
+        },
+        {
+          "value": "false",
+          "label": "false",
+          "default": true
+        }
+      ],
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
@@ -508,6 +519,17 @@
       "hidden": true,
       "label": "Use LDAP for Authentication - HTTPNode01",
       "secured": false,
+      "options": [
+        {
+          "value": "true",
+          "label": "true"
+        },
+        {
+          "value": "false",
+          "label": "false",
+          "default": true
+        }
+      ],
       "required": true,
       "immutable": false,
       "immutable_after_create": true,

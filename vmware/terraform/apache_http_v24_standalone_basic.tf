@@ -6,7 +6,7 @@
 # restricted by GSA ADP Schedule Contract with IBM Corp.
 # =================================================================
 
-# This is a terraform generated template generated from apache_http_v24_standalone_basic.
+# This is a terraform generated template generated from apache_http_v24_standalone_basic
 
 ##############################################################
 # Keys - CAMC (public/private) & optional User Key (public)
@@ -58,7 +58,6 @@ variable "ibm_stack_name" {
   description = "A unique stack name."
 }
 
-#### Default OS Admin User Map ####
 
 ##### Environment variables #####
 #Variable : ibm_pm_access_token
@@ -215,6 +214,9 @@ variable "HTTPNode01_httpd_vhosts_enabled" {
   description = "Allow to configure virtual hosts to run multiple websites on the same HTTP server"
   default     = "false"
 }
+
+
+##### virtualmachine variables #####
 
 #########################################################
 ##### Resource : HTTPNode01

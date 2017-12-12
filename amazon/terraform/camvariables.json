@@ -283,6 +283,17 @@
       "hidden": false,
       "label": "Enable Virtual Host Configuration - HTTPNode01",
       "secured": false,
+      "options": [
+        {
+          "value": "true",
+          "label": "true"
+        },
+        {
+          "value": "false",
+          "label": "false",
+          "default": true
+        }
+      ],
       "required": true,
       "immutable": false,
       "immutable_after_create": true,
@@ -546,6 +557,17 @@
       "hidden": true,
       "label": "Use LDAP for Authentication - HTTPNode01",
       "secured": false,
+      "options": [
+        {
+          "value": "true",
+          "label": "true"
+        },
+        {
+          "value": "false",
+          "label": "false",
+          "default": true
+        }
+      ],
       "required": true,
       "immutable": false,
       "immutable_after_create": true,

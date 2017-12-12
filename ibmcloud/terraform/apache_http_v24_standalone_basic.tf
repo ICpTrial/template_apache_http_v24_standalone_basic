@@ -103,13 +103,6 @@ variable "HTTPNode01-image" {
   default = "REDHAT_7_64"
 }
 
-#Variable : HTTPNode01-mgmt-network-public
-variable "HTTPNode01-mgmt-network-public" {
-  type = "string"
-  description = "Expose and use public IP of virtual machine for internal communication"
-  default = "true"
-}
-
 #Variable : HTTPNode01-name
 variable "HTTPNode01-name" {
   type = "string"
@@ -225,6 +218,15 @@ variable "HTTPNode01_httpd_vhosts_enabled" {
   type = "string"
   description = "Allow to configure virtual hosts to run multiple websites on the same HTTP server"
   default = "false"
+}
+
+
+##### virtualmachine variables #####
+#Variable : HTTPNode01-mgmt-network-public
+variable "HTTPNode01-mgmt-network-public" {
+  type = "string"
+  description = "Expose and use public IP of virtual machine for internal communication"
+  default = "true"
 }
 
 

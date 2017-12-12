@@ -47,6 +47,10 @@ provider "camc" {
   version = "~> 0.1"
 }
 
+provider "template" {
+  version = "~> 1.0"
+}
+
 provider "random" {
   version = "~> 1.0"
 }
@@ -120,13 +124,6 @@ variable "ibm_sw_repo_user" {
 
 
 ##### HTTPNode01 variables #####
-#Variable : HTTPNode01-flavor
-variable "HTTPNode01-flavor" {
-  type = "string"
-  description = "HTTPNode01 Flavor"
-  default = "t2.small"
-}
-
 data "aws_ami" "HTTPNode01_ami" {
   most_recent = true
   filter {
@@ -141,13 +138,6 @@ variable "HTTPNode01-image" {
   type = "string"
   description = "Operating system image id / template that should be used when creating the virtual image"
   default = "RHEL-7.4_HVM_GA"
-}
-
-#Variable : HTTPNode01-mgmt-network-public
-variable "HTTPNode01-mgmt-network-public" {
-  type = "string"
-  description = "Expose and use public IP of virtual machine for internal communication"
-  default = "true"
 }
 
 #Variable : HTTPNode01-name
@@ -265,6 +255,22 @@ variable "HTTPNode01_httpd_vhosts_enabled" {
   type = "string"
   description = "Allow to configure virtual hosts to run multiple websites on the same HTTP server"
   default = "false"
+}
+
+
+##### virtualmachine variables #####
+#Variable : HTTPNode01-flavor
+variable "HTTPNode01-flavor" {
+  type = "string"
+  description = "HTTPNode01 Flavor"
+  default = "t2.small"
+}
+
+#Variable : HTTPNode01-mgmt-network-public
+variable "HTTPNode01-mgmt-network-public" {
+  type = "string"
+  description = "Expose and use public IP of virtual machine for internal communication"
+  default = "true"
 }
 
 ##### domain name #####
@@ -407,7 +413,7 @@ data "template_cloudinit_config" "HTTPNode01_init"  {
   part {
     content_type = "text/cloud-config"
     content = <<EOF
-hostname: ${var.HTTPNode01-name}
+hostname: ${var.HTTPNode01-name}.${var.runtime_domain}
 fqdn: ${var.HTTPNode01-name}.${var.runtime_domain}
 manage_etc_hosts: false
 EOF
