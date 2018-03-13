@@ -1,11 +1,11 @@
 {
-  "input_namespaces": [
+  "input_datatypes": [
     {
       "name": "advanced_content_runtime_chef",
       "label": "Advanced Content Runtime"
     }
   ],
-  "output_namespace": "content_template_output",
+  "output_datatype": "content_template_output",
   "input_groups": [
     {
       "name": "cloud",
@@ -35,6 +35,17 @@
     }
   ],
   "template_input_params": [
+    {
+      "name": "ibm_stack_id",
+      "type": "string",
+      "description": "A unique stack id.",
+      "hidden": true,
+      "label": "A unique stack id.",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "environment"
+    },
     {
       "name": "ibm_stack_name",
       "type": "string",
@@ -270,6 +281,7 @@
       "secured": true,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo_password}"
     },
@@ -282,6 +294,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo}"
     },
@@ -295,6 +308,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment"
     },
     {
@@ -434,7 +448,6 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "cloud"
     },
     {
@@ -458,7 +471,6 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "cloud"
     },
     {
@@ -482,7 +494,6 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "cloud"
     },
     {
@@ -506,7 +517,6 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "cloud"
     },
     {
@@ -530,14 +540,13 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "cloud"
     },
     {
       "name": "HTTPNode01_memory",
       "type": "string",
       "description": "Amount of Memory (MBs), which is required to be one or more times of 1024",
-      "default": 4096,
+      "default": 2048,
       "hidden": false,
       "label": "IBMCloud VSI Memory - HTTPNode01",
       "secured": false,
@@ -548,12 +557,12 @@
         },
         {
           "value": 2048,
-          "label": "2048"
+          "label": "2048",
+          "default": "true"
         },
         {
           "value": 4096,
-          "label": "4096",
-          "default": "true"
+          "label": "4096"
         },
         {
           "value": 8192,
@@ -574,7 +583,6 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "cloud"
     },
     {
@@ -618,7 +626,6 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "cloud"
     },
     {
@@ -665,7 +672,6 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "cloud"
     },
     {
@@ -677,7 +683,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "virtualmachine"
     },
     {
@@ -724,7 +729,6 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "virtualmachine"
     },
     {

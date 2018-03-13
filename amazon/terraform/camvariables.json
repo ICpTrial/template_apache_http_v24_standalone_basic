@@ -1,11 +1,11 @@
 {
-  "input_namespaces": [
+  "input_datatypes": [
     {
       "name": "advanced_content_runtime_chef",
       "label": "Advanced Content Runtime"
     }
   ],
-  "output_namespace": "content_template_output",
+  "output_datatype": "content_template_output",
   "input_groups": [
     {
       "name": "cloud",
@@ -35,6 +35,17 @@
     }
   ],
   "template_input_params": [
+    {
+      "name": "ibm_stack_id",
+      "type": "string",
+      "description": "A unique stack id.",
+      "hidden": true,
+      "label": "A unique stack id.",
+      "secured": false,
+      "required": true,
+      "immutable": false,
+      "group_name": "environment"
+    },
     {
       "name": "ibm_stack_name",
       "type": "string",
@@ -156,7 +167,7 @@
       "name": "HTTPNode01_root_block_device_volume_size",
       "type": "string",
       "description": "AWS Root Block Device Volume Size",
-      "default": 25,
+      "default": "25",
       "hidden": false,
       "label": "AWS Root Block Device Volume Size",
       "secured": false,
@@ -426,7 +437,6 @@
       "secured": false,
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "virtualmachine"
     },
     {
@@ -488,6 +498,7 @@
       "secured": true,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo_password}"
     },
@@ -500,6 +511,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment",
       "default": "${advanced_content_runtime_chef.ibm_sw_repo}"
     },
@@ -513,6 +525,7 @@
       "secured": false,
       "required": true,
       "immutable": true,
+      "immutable_after_create": true,
       "group_name": "environment"
     },
     {
@@ -593,7 +606,6 @@
       ],
       "required": true,
       "immutable": false,
-      "immutable_after_create": true,
       "group_name": "virtualmachine"
     },
     {
