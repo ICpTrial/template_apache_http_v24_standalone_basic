@@ -1,7 +1,7 @@
 {
     "name": "Apache HTTP Server basic deployment on a single virtual machine - VMware vSphere",
     "description": "This template deploys Apache HTTP Server with a basic configuration on a Linux virtual machine.",
-    "version": "2.0",
+    "version": "2.1",
     "imageUrl": "",
     "image": "",
     "type": "chefcontent",
