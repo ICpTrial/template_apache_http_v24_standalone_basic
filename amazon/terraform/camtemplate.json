@@ -23,7 +23,7 @@
       }
     },
     "metadata": {
-      "displayName": "Apache HTTP Server basic deployment on a single virtual machine",
+      "displayName": "HeyHey Apache HTTP Server basic deployment on a single virtual machine",
       "providerDisplayName": "Amazon EC2",
       "longDescription": "This template deploys Apache HTTP Server with a basic configuration on a Linux virtual machine.",
       "bullets": [{
